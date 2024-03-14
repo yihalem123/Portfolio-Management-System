@@ -152,7 +152,8 @@ STATIC_URL = '/static/'
 
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    BASE_DIR / 'static',  # Assuming your static files are in a folder named 'static' within your project directory
+      # You can add additional directories if needed
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
