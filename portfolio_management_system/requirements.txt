@@ -1,5 +1,5 @@
 wheel
-gunicorn
+gunicorn==20.1.0
 pip
 setuptools
 aiohttp==3.7.3
