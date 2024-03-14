@@ -22,4 +22,4 @@ urlpatterns = [
     path('', include('home.urls')),
     path('', include('dashboard.urls')),
     path('', include('riskprofile.urls')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
