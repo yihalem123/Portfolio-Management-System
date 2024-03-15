@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = str(os.getenv('SECRET_KEY'))
+SECRET_KEY = 'django-insecure-g=jzhv5zv8nxar2z0jpv#jv-$o*p(+e597*wgkau$gc&7v*m4e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True')=="True"
@@ -96,7 +96,7 @@ WSGI_APPLICATION = 'portfolio_management_system.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 if not DEBUG:
     DATABASES = {
-	"default": dj_database_url.parse(os.environ.get("postgres://portfolio_db_bck1_user:DnZdE3uIiYhTRpQlSuZNlRygMhogOjzp@dpg-cnq0pra1hbls738ickm0-a.oregon-postgres.render.com/portfolio_db_bck1"))
+	"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 
