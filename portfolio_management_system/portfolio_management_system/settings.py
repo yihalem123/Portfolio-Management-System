@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Reference: https://dev.to/vladyslavnua/how-to-protect-your-django-secret-and-oauth-keys-53fl 
 # For handling the environment variables from .env file
@@ -27,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True')=="True"
 
 ALLOWED_HOSTS = ['portfolio-management-system.onrender.com']
 
@@ -93,13 +94,20 @@ WSGI_APPLICATION = 'portfolio_management_system.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+if not DEBUG:
+    DATABASES = {
+	"default": dj_database_url.parse(os.environ.get("postgres://portfolio_db_bck1_user:DnZdE3uIiYhTRpQlSuZNlRygMhogOjzp@dpg-cnq0pra1hbls738ickm0-a.oregon-postgres.render.com/portfolio_db_bck1"))
 }
+
+
+else:
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 AUTHENTICATION_BACKENDS = [
